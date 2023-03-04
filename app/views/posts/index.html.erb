@@ -1,0 +1,31 @@
+<%= stylesheet_link_tag("post")%>
+<p id="notice"><%= notice %></p>
+
+<% if user_signed_in? %>
+
+  <% current_user.follow_requests.each do |request| %>
+    <%= request.followerable.email %> Wants to follow you
+    <%= button_to "Accept", accept_path(request.followerable) %>
+    <%= button_to "Decline", decline_path(request.followerable) %>
+  <% end %>
+  <br>
+
+<h1>Posts</h1>
+<div id="posts" class="text-center">
+<% @posts.each do |post| %>
+  <%= render post %>
+  <hr>
+  <% end %>
+</div>
+<br>
+<% else%>
+
+<h1 style= "padding: 20px ;margin: 0 auto; text-align: center; ">You must be logged in to view content</h1>
+<br>
+  <div style="position:relative; left:45%">
+  <%= button_to "Click here to Log in", new_user_session_path , class:"nav-link"  %><br />
+  </div>
+<% end %>
+
+
+

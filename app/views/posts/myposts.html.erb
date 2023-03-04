@@ -1,0 +1,13 @@
+<%= stylesheet_link_tag("post")%>
+<p id="notice"><%= notice %></p>
+<h1>Posts</h1>
+<div id="posts" class="text-center">
+
+<% @posts.each do |post| %>
+<% if current_user.id == post.user_id.to_i %>
+  <%= render post %>
+<% end %>
+  <% end %>
+</div>
+<br>
+

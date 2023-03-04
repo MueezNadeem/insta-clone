@@ -1,0 +1,47 @@
+<div class="col-xl-4" style="margin: auto">
+<h1>New Post</h1>
+<%= form_with(model: post, local: true) do |form| %>
+
+
+  <% invalid  = post.errors.include?(:title) %>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title , class: "form-control" %>
+  <% if invalid%>
+  <p style= "color:red">
+  <%= post.errors.full_messages_for(:title).join(" ,")%>
+  </p>
+  <% end %>
+  </div>
+
+<%= form.text_field :user_id,type: "block", value: current_user.id %>
+
+<% invalid  = post.errors.include?(:description) %>
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_field :description, class: "form-control" %>
+ <% if invalid%>
+  <p style= "color:red">
+  <%= post.errors.full_messages_for(:description).join(" ,")%>
+  </p>
+  <% end %>
+  </div>
+
+<% invalid  = post.errors.include?(:keywords) %>
+  <div class="field">
+    <%= form.label :keywords %>
+    <%= form.text_field :keywords, class: "form-control" %>
+    <% if invalid%>
+  <p style= "color:red">
+  <%= post.errors.full_messages_for(:keywords).join(" ,")%>
+  </p>
+  <% end %>
+  <%= form.file_field :images, multiple: true%>
+  </div>
+
+  <div class="actions">
+    <%= form.submit class: "btn btn-primary col-12" %>
+  </div>
+<% end %>
+</div>

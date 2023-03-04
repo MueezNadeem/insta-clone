@@ -1,0 +1,27 @@
+<div class="col-xl-4" style="margin: auto">
+
+<%= form_with(model: story, local: true) do |form| %>
+  <% if story.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(story.errors.count, "error") %> prohibited this story from being saved:</h2>
+
+      <ul>
+      <% story.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+
+
+<%= form.text_field :user_id,type: "block", value: current_user.id %>
+<br>
+<%= form.file_field :images, multiple: true%>
+
+
+    <div class="actions">
+    <%= form.submit class: "btn btn-primary col-12" %>
+  </div>
+
+<% end %>
